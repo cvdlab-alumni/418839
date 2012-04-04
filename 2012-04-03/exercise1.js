@@ -70,3 +70,24 @@ DRAW(muro7);
 var pointsM8 = [[37.2,11.6],[42.8,11.6],[42.8,11.8],[37.2,11.8],[37.2,11.6]];
 var muro8 = COLOR([0,0,0])(POLYLINE(pointsM8));
 DRAW(muro8);
+
+var grad1 = POLYLINE([[36+3/8*1,1],[36+3/8*1,4]]);
+DRAW(grad1);
+
+var grad2 = POLYLINE([[36+3/8*2,1],[36+3/8*2,4]]);
+DRAW(grad2);
+
+var grad3 = POLYLINE([[36+3/8*3,1],[36+3/8*3,4]]);
+DRAW(grad3);
+
+var grad4 = POLYLINE([[36+3/8*4,1],[36+3/8*4,4]]);
+DRAW(grad4);
+
+var grad5 = POLYLINE([[36+3/8*5,1],[36+3/8*5,4]]);
+DRAW(grad5);
+
+var grad6 = POLYLINE([[36+3/8*6,1],[36+3/8*6,4]]);
+DRAW(grad6);
+
+var grad7 = POLYLINE([[36+3/8*7,1],[36+3/8*7,4]]);
+DRAW(grad7);
