@@ -24,7 +24,7 @@ var grid = function(p1,p2,p4) {
   }
 
   return STRUCT([
-    STRUCT([lineeVerticali]),STRUCT([lineeOrizzontali])
+    STRUCT(lineeVerticali),STRUCT(lineeOrizzontali)
   ]);
 }
 
@@ -39,4 +39,34 @@ var grid8 = grid([21,5],[39,5],[21,17]);
 var grid9 = grid([39,5],[51,5],[39,16]);
 
 var griglia = STRUCT([grid1, grid2, grid3, grid4, grid5, grid6, grid7, grid8, grid9]);
-DRAW(COLOR([0,0,0])(griglia));
+DRAW(griglia);
+
+//muro1,2,3
+var pointsM1 = [[8,1],[8,0.8],[0.8,0.8],[0.8,22.2],[5,22.2]];
+var muro1 = COLOR([0,0,0])(POLYLINE(pointsM1));
+DRAW(muro1);
+
+//muro4
+var pointsM4 = [[9,20.6],[9.2,20.6],[9.2,22.2],[9,22.2],[9.22]];
+var muro4 = COLOR([0,0,0])(POLYLINE(pointsM4));
+DRAW(muro4);
+
+//muro5
+var pointsM5 = [[9,17],[9.2,17.2],[9.2,18.8],[9,18.8]];
+var muro5 = COLOR([0,0,0])(POLYLINE(pointsM5));
+DRAW(muro5);
+
+//muro6
+var pointsM6 = [[7.4,15],[27.8,15],[27.8,15.2],[7.4,15.2],[7.4,15]];
+var muro6 = COLOR([0,0,0])(POLYLINE(pointsM6));
+DRAW(muro6);
+
+//muro7
+var pointsM7 = [[25,7.2],[34,7.2],[34,7.4],[25,7.4],[25,7.2]];
+var muro7 = COLOR([0,0,0])(POLYLINE(pointsM7));
+DRAW(muro7);
+
+//muro8
+var pointsM8 = [[37.2,11.6],[42.8,11.6],[42.8,11.8],[37.2,11.8],[37.2,11.6]];
+var muro8 = COLOR([0,0,0])(POLYLINE(pointsM8));
+DRAW(muro8);
