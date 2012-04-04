@@ -53,18 +53,6 @@ pavimenti.push(
     SIMPLEX_GRID([[8], [11], [spessorePav]])
   )
 );
-//copri-piscina grande
-pavimenti.push(
-  T([0,1])([1,1])(
-    SIMPLEX_GRID([[20], [9], [0.1]])
-  )
-);
-//copri-piscina piccola
-pavimenti.push(
-  T([0,1])([47,5])(
-    SIMPLEX_GRID([[4], [11], [0.1]])
-  )
-);
 
 var scale = [];
 for(i=1; i<8; i++) {
@@ -146,16 +134,16 @@ muri.push(
 );
 
 var piscine = [];
-var altezzaPiscina = 0.3
+var altezzaPiscina = 0.4
 //piscina grande
 piscine.push(
-  T([0,1,2])([1,1,0.1])(
+  T([0,1])([1,1])(
     SIMPLEX_GRID([[20], [9], [altezzaPiscina]])
   )
 );
 //piscina piccola
 piscine.push(
-  T([0,1,2])([47,5,0.1])(
+  T([0,1])([47,5])(
     SIMPLEX_GRID([[4], [11], [altezzaPiscina]])
   )
 );
@@ -265,6 +253,7 @@ for(i=0; i<8; i++) {
 var panca = (T([0,1,2])([7.9,14.2,(spessorePav+latoCubetto)])(
               SIMPLEX_GRID([[15.2], [0.6], [0.1]])
             ));
+COLOR([245/255,245/255,220/255])(panca);
 DRAW(STRUCT([panca]));
 
 var tetti = [];
@@ -284,25 +273,33 @@ tetti.push(
 );
 
 var pavimento = STRUCT(pavimenti);
+COLOR([245/255,245/255,220/255])(pavimento);
 DRAW(pavimento);
 
 var scalini = STRUCT(scale);
+COLOR([245/255,245/255,220/255])(scalini);
 DRAW(scalini);
 
 var pareti = STRUCT(muri);
+COLOR([245/255,245/255,220/255])(pareti);
 DRAW(pareti);
 
 var pools = STRUCT(piscine);
+COLOR([64/255,224/255,208/255])(pools);
 DRAW(pools);
 
 var colonnato = STRUCT(colonne);
+COLOR([144/255,135/255,109/255])(colonnato);
 DRAW(colonnato);
 
 var aria = STRUCT(vetrate);
+COLOR([176/255,224/255,230/255])(aria);
 DRAW(aria);
 
 var cubi = STRUCT(cubetti);
+COLOR([245/255,245/255,220/255])(cubi);
 DRAW(cubi);
 
 var coperture = STRUCT(tetti);
+COLOR([47/255,79/255,79/255])(cubi);
 DRAW(coperture);
