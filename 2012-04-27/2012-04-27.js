@@ -34,6 +34,7 @@ function exercise3() {
 };
 //exercise3();
 
+//esercizio 4
 function exercise4() {
   var domain = INTERVALS(1)(20);
   var controls = [[0,0],[1,2],[3,2],[3,0],[5,-1],[6,1]];
