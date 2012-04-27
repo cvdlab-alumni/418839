@@ -42,3 +42,12 @@ function exercise4() {
   DRAW(curve);
 };
 //exercise4();
+
+//ESERCIZIO 5
+function exercise5() {
+  var domain = INTERVALS(1)(20);
+  var controls = [[0,0],[3,2],[4,-1],[7,3],[9,0],[11,1],[12,0]];
+  var curve = SPLINE(CUBIC_CARDINAL(domain))(controls);
+  DRAW(curve);
+};
+//exercise5();
