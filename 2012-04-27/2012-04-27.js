@@ -51,3 +51,36 @@ function exercise5() {
   DRAW(curve);
 };
 //exercise5();
+
+//ESERCIZIO 6
+function exercise6() {
+  var domain = INTERVALS(1)(20);
+  var controls = [[-3,6],[-4,2],[-3,-1],[-1,1],[1.5,1.5],[3,4],[5,5],[7,2],[6,-2],[2,-3]];
+  var curve = SPLINE(CUBIC_UBSPLINE(domain))(controls);
+  DRAW(curve);
+};
+//exercise6();
+
+//ESERCIZIO 7
+function exercise7() {
+  var domain = INTERVALS(1)(20);
+  var controls1 = [[0,0],[3,2],[4,-1],[7,3],[9,0],[11,1],[12,0]];
+
+  var listaDfacce = [];
+  controls1.forEach( function(v,i) { listaDfacce.push([i]); } );
+  DRAW(COLOR([0,1,0])( SIMPLICIAL_COMPLEX(controls1)(listaDfacce) ) );
+
+  var curve = SPLINE(CUBIC_CARDINAL(domain))(controls1);
+  DRAW(COLOR([0,1,0])(curve);
+
+
+  var controls2 = [[-3,6],[-4,2],[-3,-1],[-1,1],[1.5,1.5],[3,4],[5,5],[7,2],[6,-2],[2,-3]];
+
+  var listaDfacce2 = [];
+  controls2.forEach( function(v,i) { listaDfacce2.push([i]); } );
+  DRAW(COLOR([1,0,0])( SIMPLICIAL_COMPLEX(controls2)(listaDfacce2) ) );
+
+  var curve2 = SPLINE(CUBIC_UBSPLINE(domain))(controls2);
+  DRAW(COLOR([1,0,0])(curve2);
+};
+//exercise7();
