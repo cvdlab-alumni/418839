@@ -256,6 +256,11 @@ function airstrip(){
       CUBOID([40,350,0.3])
     )
   );
+  var street2 = COLOR([190/255,190/255,190/255])(
+    T([0,1,2])([-40,-175,0.6])(
+      CUBOID([20,20,0.3])
+    )
+  );
   var stripe = T([1,2])([-140,0.9])(
     COLOR([0.99,0.99,0.99])(
       CUBOID([0.5,5,0.01])
@@ -283,7 +288,7 @@ function airstrip(){
   var stripes2 = STRUCT([stripe2,t2,stripe2,t2,stripe2,t2,stripe2,t2,stripe2,t2,stripe2,t2,stripe2,t2,stripe2]);
   var stripes3 = STRUCT([stripe3,t2,stripe3,t2,stripe3,t2,stripe3,t2,stripe3,t2,stripe3,t2,stripe3,t2,stripe3]);
 
-  var struct = STRUCT([sea,sand,street,plane,stripes,stripes2,stripes3]);
+  var struct = STRUCT([sea,sand,street,plane,stripes,stripes2,stripes3,street2]);
   struct = S([0,1,2])([0.2,0.2,0.2])(struct);
   return struct;
 }
