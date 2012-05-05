@@ -15,7 +15,6 @@ function drawStabilizers() {
 
   var s1 = BEZIER(S1)([c1,c2]);
   s1 = MAP(s1)(domain2);
-  DRAW(s1);
 
   var p3 = [[0,0,0.2]];
   var c3 = BEZIER(S0)(p3);
@@ -26,9 +25,6 @@ function drawStabilizers() {
   var c4 = BEZIER(S0)(p4);
   var curve4 = BEZIER(S1)([c2,c4]);
   var surface4 = MAP(curve4)(domain2);
-
-  DRAW(surface3);
-  DRAW(surface4);
 
   //HORIZONTAL STABILIZERS
   var p3 = [[-0.1,0.5,0.3],[0,0.5,0.9],[-1,0.5,0.8],[-1,0.5,0.8],[-1,0.5,0.3],[-0.5,0.5,0.2],[-0.1,0.5,0.3]];
@@ -56,7 +52,7 @@ function drawStabilizers() {
   hStabRight = T([2])([-0.2])(hStabRight);
   var hStabLeft = S([2])([-1])(hStabRight);
 
-  var tail = STRUCT([s1,hStabRight,hStabLeft])
+  var tail = STRUCT([s1,surface3,surface4,hStabRight,hStabLeft])
   tail = COLOR([229/255,229/255,229/255,1])(tail);
   return tail;
 }
