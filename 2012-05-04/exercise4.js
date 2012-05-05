@@ -4,7 +4,7 @@ function drawWing() {
   var domain2 = DOMAIN([[0,1],[0,1]])([20,30]);
 
   var p0 = [[0,0,0],[2,0.1,0],[2,0.2,0],[2,0.3,0],[1.7,0.3,0],[1.4,0.5,0],[0,0,0]];
-  var p00 = [[0,0,0],[2,0.1,0.2],[2,0.2,0.2],[2,0.3,0.2],[1.7,0.3,0],[1.4,0.5,0],[0,0,0]];
+  var p00 = [[0,0,0],[2,0.1,0.4],[2,0.2,0.4],[2,0.3,0.4],[1.7,0.3,0],[1.4,0.5,0],[0,0,0]];
 
   var p1 = p0.map(function(p) {return [p[0]+0.2,p[1],p[2]+1.41]});
   var p2 = p0.map(function(p) {return [p[0]+0.4,p[1],p[2]+2.82]});
@@ -23,8 +23,16 @@ function drawWing() {
 
   var wingCurves = BEZIER(S1)([c0,c1,c2,c3,c4,c5,c6]);
   var wing = MAP(wingCurves)(domain2);
+
+  var p7 = [[0,0,0]];
+  var c7 = BEZIER(S0)(p7);
+  var curve1 = BEZIER(S1)([c0,c7]);
+  var surface1 = MAP(curve1)(domain2);
+
   wing = COLOR([229/255,229/255,229/255,1])(wing);
-  return wing;
+  surface1 = COLOR([0,0,0,1])(surface1);
+  var struct = STRUCT([wing,surface1]);
+  return struct;
 }
 
 //FUSELAGE
@@ -208,7 +216,7 @@ function assembly(){
   wing = R([0,1])([-PI/2])(wing);
   wing = R([0,1])([PI/18])(wing);
 
-  wing = T([0,1])([0.7,3.2])(wing);
+  wing = T([0,1])([0.7,3.1])(wing);
 
   var leftWing = S([2])([-1])(wing);
 
