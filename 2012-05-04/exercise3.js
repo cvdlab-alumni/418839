@@ -57,7 +57,8 @@ function drawStabilizers() {
   var hStabLeft = S([2])([-1])(hStabRight);
 
   var tail = STRUCT([s1,hStabRight,hStabLeft])
-  DRAW(COLOR([229/255,229/255,229/255,1])(tail));
+  tail = COLOR([229/255,229/255,229/255,1])(tail);
+  return tail;
 }
 
-drawStabilizers();
+DRAW(drawStabilizers());

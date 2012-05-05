@@ -22,7 +22,8 @@ function drawWing() {
 
   var wingCurves = BEZIER(S1)([c0,c1,c2,c3,c4,c5,c6]);
   var wing = MAP(wingCurves)(domain2);
-  DRAW(COLOR([229/255,229/255,229/255,1])(wing));
+  wing = COLOR([229/255,229/255,229/255,1])(wing);
+  return wing;
 }
 
-drawWing();
+DRAW(drawWing());
