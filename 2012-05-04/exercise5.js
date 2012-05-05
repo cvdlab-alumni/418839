@@ -262,12 +262,29 @@ function airstrip(){
     )
   );
   var t = T([1])([12]);
+
+  var stripe2 = T([0,1,2])([-18.75,-160,0.9])(
+    COLOR([0.99,0.99,0.99])(
+      CUBOID([2.5,8,0.01])
+    )
+  );
+  var t2 = T([0])([5]);
+
+  var stripe3 = T([0,1,2])([-18.75,130,0.9])(
+    COLOR([0.99,0.99,0.99])(
+      CUBOID([2.5,8,0.01])
+    )
+  );
+
   var stripes = STRUCT([stripe,t,stripe,t,stripe,t,stripe,t,stripe,t,stripe,t,stripe,t,stripe,
     t,stripe,t,stripe,t,stripe,t,stripe,t,stripe,t,stripe,t,stripe,t,stripe,t,stripe,t,stripe,
-    t,stripe,t,stripe,t,stripe,t,stripe,t,stripe,t,stripe]);
+    t,stripe,t,stripe,t,stripe,t,stripe]);
 
-  var struct = STRUCT([sea,sand,street,plane,stripes]);
-  struct = S([0,1,2])([0.5,0.5,0.5])(struct);
+  var stripes2 = STRUCT([stripe2,t2,stripe2,t2,stripe2,t2,stripe2,t2,stripe2,t2,stripe2,t2,stripe2,t2,stripe2]);
+  var stripes3 = STRUCT([stripe3,t2,stripe3,t2,stripe3,t2,stripe3,t2,stripe3,t2,stripe3,t2,stripe3,t2,stripe3]);
+
+  var struct = STRUCT([sea,sand,street,plane,stripes,stripes2,stripes3]);
+  struct = S([0,1,2])([0.2,0.2,0.2])(struct);
   return struct;
 }
 DRAW(airstrip());
