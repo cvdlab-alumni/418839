@@ -13,16 +13,16 @@ function drawFuselage() {
   var c2 = BEZIER(S0)(p2);
   var curve1 = BEZIER(S1)([c0,c2]);
   var surface1 = MAP(curve1)(domain2);
-  //DRAW(surface1);
 
   var p3 = [[0,0,-0.2]];
   var c3 = BEZIER(S0)(p3);
   var curve2 = BEZIER(S1)([c1,c3]);
   var surface2 = MAP(curve2)(domain2);
-  //DRAW(surface2);
 
   var lateral = BEZIER(S1)([c0,c1]);
   var fuselage = MAP(lateral)(domain2);
+
+  //PUNTA DELL'AEREO
 
   var p4 = [[0.5,5.8,0.15],[0.5,4,0.15],[-1,5.6,0.15],[0.5,5.8,0.15]];
   var p5 = [[0.5,5.8,-0.15],[0.5,4,-0.15],[-1,5.6,-0.15],[0.5,5.8,-0.15]];
@@ -34,13 +34,11 @@ function drawFuselage() {
   var c6 = BEZIER(S0)(p6);
   var curve3 = BEZIER(S1)([c4,c6]);
   var surface3 = MAP(curve3)(domain2);
-  //DRAW(surface3);
 
   var p7 = [[0.5,5.8,-0.15]];
   var c7 = BEZIER(S0)(p7);
   var curve4 = BEZIER(S1)([c5,c7]);
   var surface4 = MAP(curve4)(domain2);
- //DRAW(surface4);
 
   var lateral2 = BEZIER(S1)([c4,c5]);
   var cockpit = MAP(lateral2)(domain2);
@@ -49,7 +47,7 @@ function drawFuselage() {
   cockpitStruct = T([0,1])([0.1,-0.05])(cockpitStruct);
 
 
-
+  //FUNZIONE PER DISEGNARE CILINDRI PIENI
   function drawCylinderPieno(r,h,n,m,p,color) {
     r = r || 1;
     h = h || 2;
@@ -59,18 +57,18 @@ function drawFuselage() {
     color = color || [1,1,1,1];
 
     var dominioSolido = SIMPLEX_GRID([ REPEAT(n)(2*PI/n), REPEAT(m)((r)/m), REPEAT(p)(h/p) ]);
+
     var mappingSolido = function(pt) {
-    return [pt[1]*SIN(pt[0]), pt[1]*COS(pt[0]), pt[2]];
+      return [pt[1]*SIN(pt[0]), pt[1]*COS(pt[0]), pt[2]];
     };
 
     dominioSolido = MAP(mappingSolido)(dominioSolido);
-    //DRAW(dominioSolido);
     COLOR(color)(dominioSolido);
 
     return dominioSolido;
   };
-  //QUì INIZIA L'ELICA
 
+  //QUì INIZIA L'ELICA
   var cilindro1 = drawCylinderPieno(0.02,0.2,20,1,1);
   cilindro1 = T([0,1])([0.5,5.8])(R([1,2])([PI/2])(cilindro1));
 
@@ -104,10 +102,19 @@ function drawFuselage() {
   var cilindro2 = drawCylinderPieno(0.05,0.01,20,1,1);
   cilindro2 = T([0,1])([0.5,5.84])(R([1,2])([PI/2])(cilindro2));
 
+  //RUOTA DESTRA
+  var cilindro3 = drawCylinderPieno(0.1,0.1,20,1,1);
+  cilindro3 = T([0,1,2])([-0.32,4.8,0.2])(cilindro3);
+  cilindro3 = COLOR([0,0,0,1])(cilindro3);
+  //RUOTA SINISTRA
+  var cilindro4 = drawCylinderPieno(0.1,0.1,20,1,1);
+  cilindro4 = T([0,1,2])([-0.32,4.8,-0.3])(cilindro4);
+  cilindro4 = COLOR([0,0,0,1])(cilindro4);
+
   var struct = STRUCT([fuselage, surface1, surface2, cockpitStruct, cilindro1]);
-  COLOR([229/255,229/255,229/255,1])(struct);
+  struct = COLOR([229/255,229/255,229/255,1])(struct);
   solid56 = COLOR([139/255,69/255,19/255,1])(solid56);
-  struct = STRUCT([struct,solid56,cilindro2]);
+  struct = STRUCT([struct,solid56,cilindro2,cilindro3,cilindro4]);
   DRAW(struct);
 }
 
