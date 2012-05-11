@@ -41,7 +41,8 @@ function drawSquareBorder() {
 	var top = T([0,1])([-0.2,8])(CUBOID([8.4,0.2,1]));
 	var left = T([0,1])([-0.2,0])(CUBOID([0.2,8,1]));
 	var right = T([0,1])([8,0])(CUBOID([0.2,8,1]));
-	var border = STRUCT([bottom,top,left,right]);
+	var base = T([0,1,2])([-0.2,-0.2,-0.2])(CUBOID([8.4,8.4,0.2]));
+	var border = STRUCT([bottom,top,left,right,base]);
 	return borderBrown(border);
 }
 
