@@ -1,3 +1,9 @@
+/**
+ * @author Andrea Somma
+ * 
+ * Chess
+ */
+
 function lightBrown(model){
 	return COLOR([238/255,232/255,170/255,1])(model);
 }
