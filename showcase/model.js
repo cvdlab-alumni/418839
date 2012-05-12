@@ -76,7 +76,7 @@ function createCristalBorder() {
 }
 
 
-function draWCristal() {
+function drawCristal() {
 	var sBottom = createCristalBorder();
 	var sTop = T([0,1])([8,8])(R([0,1])([PI])(sBottom));
 	var sLeft = T([1])([8])(R([0,1])([-PI/2])(sBottom));
@@ -85,4 +85,4 @@ function draWCristal() {
 	var cristal = STRUCT([sBottom,sTop,sLeft,sRight]);
 	return COLOR([0,1,1,0.8])(cristal);
 }
-DRAW(draWCristal());
+DRAW(drawCristal());
