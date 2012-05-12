@@ -31,12 +31,6 @@ function drawSquares() {
 DRAW(drawSquares());
 
 function drawSquareBorder() {
-	//var internalPoints = [[0,0],[8,0],[8,8],[0,8],[0,0]];
-	//var externalPoints = [[-0.2,-0.2],[8.2,-0.2],[8.2,8.2],[-0.2,8.2],[-0.2,-0.2]];
-	//var intSqr = POLYLINE(internalPoints);
-	//var extSqr = POLYLINE(externalPoints);
-	//var border = STRUCT([intSqr,extSqr]);
-	//return BOUNDARY(EXTRUDE([2])(border));
 	var bottom = T([0,1])([-0.2,-0.2])(CUBOID([8.4,0.2,1]));
 	var top = T([0,1])([-0.2,8])(CUBOID([8.4,0.2,1]));
 	var left = T([0,1])([-0.2,0])(CUBOID([0.2,8,1]));
@@ -47,3 +41,34 @@ function drawSquareBorder() {
 }
 
 DRAW(drawSquareBorder());
+
+function createCristalBorder() {
+	var domain = DOMAIN([[0,1],[0,1]])([100,1]);
+	
+  var knots = [0,0,0,1,2,3,4,5,6,7,8,9,10,11,11,11];
+
+  var points1 = [[-0.2,-0.2,1],[-0.3,-0.3,1.1],[-0.2,-0.2,1.2],[-0.4,-0.4,1.3],[-0.5,-0.5,0.9],[-0.3,-0.3,0.8],[-0.6,-0.6,0.8],
+	[-0.4,-0.4,0.6],[-0.7,-0.7,0.6],[-0.3,-0.3,0.1],[-0.9,-0.9,-0.2],[-0.5,-0.5,-0.2],[-0.2,-0.2,-0.2]];
+
+	var points2 = [[8.2,-0.2,1],[8.3,-0.3,1.1],[8.2,-0.2,1.2],[8.4,-0.4,1.3],[8.5,-0.5,0.9],[8.3,-0.3,0.8],[8.6,-0.6,0.8],
+	[8.4,-0.4,0.6],[8.7,-0.7,0.6],[8.3,-0.3,0.1],[8.9,-0.9,-0.2],[8.5,-0.5,-0.2],[8.2,-0.2,-0.2]];
+
+  var curve1 = NUBS(S0)(2)(knots)(points1);
+	var curve2 = NUBS(S0)(2)(knots)(points2);
+
+  var sup = BEZIER(S1)([curve1,curve2]);
+  sup = MAP(sup)(domain);
+  return sup;
+}
+
+function draWCristal() {
+	var sBottom = createCristalBorder();
+	var sTop = T([0,1])([8,8])(R([0,1])([PI])(sBottom));
+	var sLeft = T([1])([8])(R([0,1])([-PI/2])(sBottom));
+	var sRight = T([0])([8])(R([0,1])([PI/2])(sBottom));
+
+	var cristal = STRUCT([sBottom,sTop,sLeft,sRight]);
+	return COLOR([0,1,1,0.8])(cristal);
+}
+
+DRAW(draWCristal());
