@@ -14,10 +14,16 @@ function drawSquares() {
 	var square = CUBOID([1,1,1]);
 	var lightSquare = lightBrown(square);
 	var darkSquare = darkBrown(square);
+
 	var x_T = T([0])([1]);
 	var y_T = T([1])([1]);
-	var oddRow = STRUCT([darkSquare,x_T,lightSquare,x_T,darkSquare,x_T,lightSquare,x_T,darkSquare,x_T,lightSquare,x_T,darkSquare,x_T,lightSquare]);
-	var evenRow = STRUCT([lightSquare,x_T,darkSquare,x_T,lightSquare,x_T,darkSquare,x_T,lightSquare,x_T,darkSquare,x_T,lightSquare,x_T,darkSquare]);
+
+	var oddRow = STRUCT([darkSquare,x_T,lightSquare,x_T,darkSquare,x_T,lightSquare,x_T,
+		darkSquare,x_T,lightSquare,x_T,darkSquare,x_T,lightSquare]);
+
+	var evenRow = STRUCT([lightSquare,x_T,darkSquare,x_T,lightSquare,x_T,darkSquare,x_T,
+		lightSquare,x_T,darkSquare,x_T,lightSquare,x_T,darkSquare]);
+
 	var matrix = [];
 	for(i=0; i<8; i++){
 		if(i%2===0){
@@ -27,8 +33,8 @@ function drawSquares() {
 	}
 	return STRUCT(matrix);
 }
-
 DRAW(drawSquares());
+
 
 function drawSquareBorder() {
 	var bottom = T([0,1])([-0.2,-0.2])(CUBOID([8.4,0.2,1]));
@@ -39,19 +45,21 @@ function drawSquareBorder() {
 	var border = STRUCT([bottom,top,left,right,base]);
 	return borderBrown(border);
 }
-
 DRAW(drawSquareBorder());
+
 
 function createCristalBorder() {
 	var domain = DOMAIN([[0,1],[0,1]])([100,1]);
 	
   var knots = [0,0,0,1,2,3,4,5,6,7,8,9,10,11,11,11];
 
-  var points1 = [[-0.2,-0.2,1],[-0.3,-0.3,1.1],[-0.2,-0.2,1.2],[-0.4,-0.4,1.3],[-0.5,-0.5,0.9],[-0.3,-0.3,0.8],[-0.6,-0.6,0.8],
-	[-0.4,-0.4,0.6],[-0.7,-0.7,0.6],[-0.3,-0.3,0.1],[-0.9,-0.9,-0.2],[-0.5,-0.5,-0.2],[-0.2,-0.2,-0.2]];
+  var points1 = [[-0.2,-0.2,1],[-0.3,-0.3,1.1],[-0.2,-0.2,1.2],
+  	[-0.4,-0.4,1.3],[-0.5,-0.5,0.9],[-0.3,-0.3,0.8],[-0.6,-0.6,0.8],[-0.4,-0.4,0.6],
+  	[-0.7,-0.7,0.6],[-0.3,-0.3,0.1],[-0.9,-0.9,-0.2],[-0.5,-0.5,-0.2],[-0.2,-0.2,-0.2]];
 
-	var points2 = [[8.2,-0.2,1],[8.3,-0.3,1.1],[8.2,-0.2,1.2],[8.4,-0.4,1.3],[8.5,-0.5,0.9],[8.3,-0.3,0.8],[8.6,-0.6,0.8],
-	[8.4,-0.4,0.6],[8.7,-0.7,0.6],[8.3,-0.3,0.1],[8.9,-0.9,-0.2],[8.5,-0.5,-0.2],[8.2,-0.2,-0.2]];
+	var points2 = [[8.2,-0.2,1],[8.3,-0.3,1.1],[8.2,-0.2,1.2],
+		[8.4,-0.4,1.3],[8.5,-0.5,0.9],[8.3,-0.3,0.8],[8.6,-0.6,0.8],[8.4,-0.4,0.6],
+		[8.7,-0.7,0.6],[8.3,-0.3,0.1],[8.9,-0.9,-0.2],[8.5,-0.5,-0.2],[8.2,-0.2,-0.2]];
 
   var curve1 = NUBS(S0)(2)(knots)(points1);
 	var curve2 = NUBS(S0)(2)(knots)(points2);
@@ -60,6 +68,7 @@ function createCristalBorder() {
   sup = MAP(sup)(domain);
   return sup;
 }
+
 
 function draWCristal() {
 	var sBottom = createCristalBorder();
@@ -70,5 +79,4 @@ function draWCristal() {
 	var cristal = STRUCT([sBottom,sTop,sLeft,sRight]);
 	return COLOR([0,1,1,0.8])(cristal);
 }
-
 DRAW(draWCristal());
