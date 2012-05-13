@@ -4,6 +4,8 @@
  * Chess
  */
 
+var scmodel;
+
 function drawChess() {
 
 	function lightBrown(model){
@@ -92,4 +94,4 @@ function drawChess() {
 	return STRUCT([squares,borders,cristals]);
 }
 
-var scmodel = drawChess();
+scmodel = drawChess();
