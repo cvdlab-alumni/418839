@@ -56,7 +56,8 @@ function drawChess() {
 		var left = T([0,1])([-0.2,0])(CUBOID([0.2,8,1]));
 		var right = T([0,1])([8,0])(CUBOID([0.2,8,1]));
 		var base = T([0,1,2])([-0.2,-0.2,-0.2])(CUBOID([8.4,8.4,0.2]));
-		var border = STRUCT([borderBrown(bottom),borderBrown(top),borderBrown(left),borderBrown(right),ivory(base)]);
+		var border = STRUCT([borderBrown(bottom),borderBrown(top),borderBrown(left),borderBrown(right),
+			ivory(base)]);
 		return border;
 	}
 
