@@ -20,6 +20,10 @@ function drawChess() {
 		return COLOR([92/255,51/255,23/255,1])(model);
 	}
 
+	function ivory(model){
+		return COLOR([231/255,214/255,185/255,1])(model);
+	}
+
 
 	function drawSquares() {
 		var square = CUBOID([1,1,1]);
@@ -52,12 +56,12 @@ function drawChess() {
 		var left = T([0,1])([-0.2,0])(CUBOID([0.2,8,1]));
 		var right = T([0,1])([8,0])(CUBOID([0.2,8,1]));
 		var base = T([0,1,2])([-0.2,-0.2,-0.2])(CUBOID([8.4,8.4,0.2]));
-		var border = STRUCT([bottom,top,left,right,base]);
-		return borderBrown(border);
+		var border = STRUCT([borderBrown(bottom),borderBrown(top),borderBrown(left),borderBrown(right),ivory(base)]);
+		return border;
 	}
 
 
-	function createCristalBorder() {
+	function createIvoryBorder() {
 		var domain = DOMAIN([[0,1],[0,1]])([100,1]);
 	
   	var knots = [0,0,0,1,2,3,4,5,6,7,8,9,10,11,11,11];
@@ -78,20 +82,20 @@ function drawChess() {
   	return sup;
 	}
 
-	function drawCristal() {
-		var sBottom = createCristalBorder();
+	function drawIvory() {
+		var sBottom = createIvoryBorder();
 		var sTop = T([0,1])([8,8])(R([0,1])([PI])(sBottom));
 		var sLeft = T([1])([8])(R([0,1])([-PI/2])(sBottom));
 		var sRight = T([0])([8])(R([0,1])([PI/2])(sBottom));
 
-		var cristal = STRUCT([sBottom,sTop,sLeft,sRight]);
-		return COLOR([0,1,1,0.8])(cristal);
+		var sIvory = STRUCT([sBottom,sTop,sLeft,sRight]);
+		return ivory(sIvory);
 	}
 
 	var squares = drawSquares();
-	var borders = drawSquareBorder();
-	var cristals = drawCristal();
-	return STRUCT([squares,borders,cristals]);
+	var int_borders = drawSquareBorder();
+	var ext_borders = drawIvory();
+	return STRUCT([squares,int_borders,ext_borders]);
 }
 
 scmodel = drawChess();
